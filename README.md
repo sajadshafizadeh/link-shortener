@@ -1,3 +1,10 @@
+## Installation:
+You need to run the following command when you're under root of the project. 
+
+    composer install
+
+----
+
 ## Run:
 You need to run the following command when you're under root of the project. 
 
