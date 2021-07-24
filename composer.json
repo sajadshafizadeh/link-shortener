@@ -6,5 +6,7 @@
             "email": "vip.saj.71@gmail.com"
         }
     ],
-    "require": {}
+    "require": {
+        "symfony/http-foundation": "^5.3"
+    }
 }
