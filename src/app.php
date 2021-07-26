@@ -12,6 +12,6 @@ $routes->add('bye', new Routing\Route('/bye'));
 
 $fileLocator = new FileLocator([__DIR__]);
 $loader = new YamlFileLoader($fileLocator);
-$routes = $loader->load('routes.yaml');
+$routes .= $loader->load('routes.yaml');
 
 return $routes;
