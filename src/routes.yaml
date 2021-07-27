@@ -1,7 +1,7 @@
 # routes.yaml
 
 hello:
-  path: /{filename}{name}
+  path: /{filename}/{name}
   defaults: 
     filename: hello
     name: Sajad
