@@ -17,7 +17,13 @@ try {
 
     extract($matcher->match($request->getPathInfo()), EXTR_SKIP);
     ob_start();
-	include sprintf(__DIR__.'/../src/pages/%s.php', $filename);
+    $path = sprintf(__DIR__.'/../src/pages/%s.php', $filename);
+
+    if (file_exists($path)){
+    	include $path;
+    } else {
+    	throw new Routing\Exception\ResourceNotFoundException();
+    }
 
     $response = new Response(ob_get_clean());
 } catch (Routing\Exception\ResourceNotFoundException $exception) {
