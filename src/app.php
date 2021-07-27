@@ -5,9 +5,9 @@ use Symfony\Component\Config\FileLocator;
 use Symfony\Component\Routing\Loader\YamlFileLoader;
 use Symfony\Component\Yaml\Parser as YamlParser;
 
-$routes = new Routing\RouteCollection();
-$routes->add('hello', new Routing\Route('/hello/{name}', ['name' => 'World']));
-$routes->add('bye', new Routing\Route('/bye'));
+// $routes = new Routing\RouteCollection();
+// $routes->add('hello', new Routing\Route('/hello/{name}', ['name' => 'World']));
+// $routes->add('bye', new Routing\Route('/bye'));
 
 
 $fileLocator = new FileLocator([__DIR__]);

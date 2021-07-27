@@ -1,5 +1,9 @@
 # routes.yaml
-test:
-    path:       /test
-    controller: testController::testMethod
-    methods:    GET
+
+hello:
+  path: /hello
+  defaults: 
+    name: Sajad
+
+bye:
+    path: /bye
