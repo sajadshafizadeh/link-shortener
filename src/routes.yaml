@@ -1,10 +1,13 @@
 # routes.yaml
 
-hello:
-  path: /{filename}/{name}
-  defaults: 
-    filename: hello
-    name: Sajad
+# hello:
+#   path: /{filename}/{name}
+#   defaults: 
+#     filename: hello
+#     name: Sajad
 
 bye:
     path: /bye
+    methods: GET
+    defaults: 
+      filename: Bye
