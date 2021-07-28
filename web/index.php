@@ -19,7 +19,7 @@ try {
     extract($matcher->match($request->getPathInfo()), EXTR_SKIP);
     ob_start();
 
-    $path = sprintf(__DIR__.'/../src/pages/%s.php', $filename);
+    $path = sprintf(__DIR__.'/../src/Application/Controller/%s.php', $filename);
     
     if (file_exists($path)){
     	include $path;
