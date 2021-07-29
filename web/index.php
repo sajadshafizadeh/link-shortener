@@ -32,7 +32,7 @@ try {
 
 } catch (ResourceNotFoundException $exception) {
     $response = new Response('Not Found', 404);
-} catch (Exception $exception) {
+} catch (Throwable $exception) {
     $response = new Response('An error occurred', 500);
 }
 
