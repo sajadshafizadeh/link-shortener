@@ -34,7 +34,7 @@ try {
     $controller = new $controller_name($twig);
 
     // To call the specified method of the controller class in the route
-    $response = $controller->{$request->get('action')}($request, $twig);
+    $response = $controller->{$request->get('action')}($request);
 
 } catch (ResourceNotFoundException $exception) {
     $response = new Response('Not Found', 404);
