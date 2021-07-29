@@ -31,7 +31,7 @@ try {
 
     // To make an object of the controller class
     $controller_name = $request->get('controller');
-    $controller = new $controller_name;
+    $controller = new $controller_name($twig);
 
     // To call the specified method of the controller class in the route
     $response = $controller->{$request->get('action')}($request, $twig);
