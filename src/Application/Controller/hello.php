@@ -2,12 +2,13 @@
 
 namespace Application\Controller;
 
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 
 class Hello{
 
-    public function index($params){
-		return $response = new Response("Hello " . htmlspecialchars($params['name'], ENT_QUOTES, 'UTF-8'));
+    public function index(Request $request){
+		return $response = new Response("Hello " . htmlspecialchars($request->get('name'), ENT_QUOTES, 'UTF-8'));
     }
 
 }

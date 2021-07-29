@@ -16,10 +16,15 @@ $matcher = new Routing\Matcher\UrlMatcher($routes, $context);
 
 try {
 
-    $params = $matcher->match($request->getPathInfo());
+    $parameters = $matcher->match($request->getPathInfo());
 
-    $controller = array_shift($params);
-    $action = array_shift($params); // method
+    // To set parameters to $request
+    foreach ($parameters as $key => $value) {
+        $request->attributes->set($key, $value);
+    }
+
+    $controller = $request->get('controller');
+    $action = $request->get('action'); // method
 
     // extract($matcher->match($request->getPathInfo()), EXTR_SKIP);
     // ob_start();
@@ -31,8 +36,9 @@ try {
 
         // To check the method exists
         if (method_exists($controller_obj, $action)){
+
             // To call the specified method of the controller class in the route
-            $response = $controller_obj->$action($params);
+            $response = $controller_obj->$action($request);
 
         } else {
             throw new ResourceNotFoundException();
