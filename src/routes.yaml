@@ -1,5 +1,12 @@
 # routes.yaml
 
+home:
+  path: /
+  defaults: 
+    controller: Application\Controller\Hello
+    action: index
+    name: World
+
 hello:
   path: /hello/{name}
   defaults: 
