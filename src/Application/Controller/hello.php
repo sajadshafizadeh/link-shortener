@@ -16,7 +16,10 @@ class Hello{
 
     public function index(Request $request): Response {
 
-		return $response = new Response("Hello " . htmlspecialchars($request->get('name'), ENT_QUOTES, 'UTF-8'));
+    	$template = $this->twig->load('hello.html.twig');
+    	$res = $template->render(['name' => $request->get('name')]);
+
+		return $response = new Response($res);
     }
 
 }
