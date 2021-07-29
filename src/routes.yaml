@@ -1,13 +1,14 @@
 # routes.yaml
 
-# hello:
-#   path: /{filename}/{name}
-#   defaults: 
-#     filename: hello
-#     name: Sajad
+hello:
+  path: /hello/{name}
+  defaults: 
+    controller: Application\Controller\Hello
+    action: index
+    name: Sajad
 
 bye:
-    path: /bye
-    methods: GET
-    defaults: 
-      filename: Bye
+  path: /bye
+  defaults: 
+    controller: Application\Controller\Bye
+    action: index

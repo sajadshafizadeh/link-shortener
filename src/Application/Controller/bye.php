@@ -2,14 +2,12 @@
 
 namespace Application\Controller;
 
+use Symfony\Component\HttpFoundation\Response;
+
 class Bye{
 
     public function index(){
-		
-		return "Goodbye";
+		return $response = new Response("Goodbye");
     }
 
 }
-
-$obj = new Bye;
-echo $obj->index();
