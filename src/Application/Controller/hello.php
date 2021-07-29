@@ -7,7 +7,7 @@ use Symfony\Component\HttpFoundation\Response;
 
 class Hello{
 
-    public function index(Request $request){
+    public function index(Request $request): Response {
 		return $response = new Response("Hello " . htmlspecialchars($request->get('name'), ENT_QUOTES, 'UTF-8'));
     }
 
