@@ -28,19 +28,13 @@ try {
         $request->attributes->set($key, $value);
     }
 
-    // Init Twig
-    $loader = new FilesystemLoader(__DIR__.'/../src/Application/Template');
-    $twig = new Environment($loader, []);
-
-    // To make an object of the controller class
-    // $controller_name = $request->get('controller');
-    // $controller = new $controller_name($twig);
 
     // DI
     $containerBuilder = new ContainerBuilder();
-    $containerBuilder->setParameter('path.root', __DIR__ . '/..');
+    $containerBuilder->setParameter('path.root', __DIR__ . '/../src');
     $loader = new YamlFileLoader($containerBuilder, new FileLocator(__DIR__));
     $loader->load(__DIR__.'/../config/dependencies.yaml');
+    $containerBuilder->compile();
     $controller = $containerBuilder->get($request->get('controller'));
 
     // To call the specified method of the controller class in the route
@@ -50,7 +44,7 @@ try {
     $response = new Response('Not Found', 404);
 } catch (Throwable $exception) {
     $response = new Response($exception->getMessage(), 500);
-    throw $exception;
+    // throw $exception;
 }
 
 $response->send();
