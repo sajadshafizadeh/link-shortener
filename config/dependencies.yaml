@@ -1,4 +1,11 @@
 services:
-    mailer:
+    Application\Controller\Hello:
         class: Application\Controller\Hello
-        # arguments: []
+
+    Twig\Loader\FilesystemLoader:
+        arguments:
+            - '%path.root%/Application/Template'
+
+    Twig\Environment:
+        arguments:
+            - '@Twig\Loader\FilesystemLoader'

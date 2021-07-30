@@ -38,6 +38,7 @@ try {
 
     // DI
     $containerBuilder = new ContainerBuilder();
+    $containerBuilder->setParameter('path.root', __DIR__ . '/..');
     $loader = new YamlFileLoader($containerBuilder, new FileLocator(__DIR__));
     $loader->load(__DIR__.'/../config/dependencies.yaml');
     $controller = $containerBuilder->get($request->get('controller'));
