@@ -8,6 +8,9 @@ use Symfony\Component\Routing;
 use Symfony\Component\Routing\Exception\ResourceNotFoundException;
 use \Twig\Loader\FilesystemLoader;
 use \Twig\Environment;
+use Symfony\Component\Config\FileLocator;
+use Symfony\Component\DependencyInjection\ContainerBuilder;
+use Symfony\Component\DependencyInjection\Loader\YamlFileLoader;
 
 $request = Request::createFromGlobals();
 $routes = include __DIR__.'/../src/app.php';
@@ -30,8 +33,14 @@ try {
     $twig = new Environment($loader, []);
 
     // To make an object of the controller class
-    $controller_name = $request->get('controller');
-    $controller = new $controller_name($twig);
+    // $controller_name = $request->get('controller');
+    // $controller = new $controller_name($twig);
+
+    // DI
+    $containerBuilder = new ContainerBuilder();
+    $loader = new YamlFileLoader($containerBuilder, new FileLocator(__DIR__));
+    $loader->load(__DIR__.'/../config/dependencies.yaml');
+    $controller = $containerBuilder->get($request->get('controller'));
 
     // To call the specified method of the controller class in the route
     $response = $controller->{$request->get('action')}($request);
