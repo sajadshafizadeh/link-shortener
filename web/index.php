@@ -50,6 +50,7 @@ try {
     $response = new Response('Not Found', 404);
 } catch (Throwable $exception) {
     $response = new Response($exception->getMessage(), 500);
+    throw $exception;
 }
 
 $response->send();

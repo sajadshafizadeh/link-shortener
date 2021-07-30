@@ -1,6 +1,4 @@
 services:
-    Application\Controller\Hello:
-        class: Application\Controller\Hello
 
     Twig\Loader\FilesystemLoader:
         arguments:
@@ -9,3 +7,8 @@ services:
     Twig\Environment:
         arguments:
             - '@Twig\Loader\FilesystemLoader'
+
+    Application\Controller\Hello:
+        class: Application\Controller\Hello
+        arguments:
+            - '@Twig\Environment'
