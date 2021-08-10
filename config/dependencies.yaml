@@ -16,3 +16,9 @@ services:
             
     Application\Controller\:
         resource: '%path.root%/src/Application/Controller/*'
+
+    PDO:
+        class: PDO
+        arguments: ['mysql:host=localhost;dbname=spy;charset=utf8mb4', 'root', '']
+        calls:
+            - [setAttribute, [!php/const PDO::ATTR_ERRMODE, !php/const PDO::ERRMODE_EXCEPTION]]
