@@ -1,21 +1,24 @@
 services:
 
     _defaults:
-        autowire: false
-        autoconfigure: false
+        autowire: true
+        autoconfigure: true
         public: true
 
 
     Twig\Loader\FilesystemLoader:
         arguments:
-            - '%path.root%/Application/Template'
+            - '%path.root%/src/Application/Template'
 
     Twig\Environment:
         arguments:
             - '@Twig\Loader\FilesystemLoader'
             
-    Application\Controller\Hello:
-        class: Application\Controller\Hello
-        arguments:
-            - '@Twig\Environment'
+    Application\Controller\:
+        resource: '%path.root%/src/Application/Controller/*'
 
+    PDO:
+        class: PDO
+        arguments: ['mysql:host=localhost;dbname=spy;charset=utf8mb4', 'root', '']
+        calls:
+            - [setAttribute, [!php/const PDO::ATTR_ERRMODE, !php/const PDO::ERRMODE_EXCEPTION]]

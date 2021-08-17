@@ -28,10 +28,9 @@ try {
         $request->attributes->set($key, $value);
     }
 
-
     // DI
     $containerBuilder = new ContainerBuilder();
-    $containerBuilder->setParameter('path.root', __DIR__ . '/../src');
+    $containerBuilder->setParameter('path.root', __DIR__ . "/..");
     $loader = new YamlFileLoader($containerBuilder, new FileLocator(__DIR__));
     $loader->load(__DIR__.'/../config/dependencies.yaml');
     $containerBuilder->compile();
@@ -44,7 +43,7 @@ try {
     $response = new Response('Not Found', 404);
 } catch (Throwable $exception) {
     $response = new Response($exception->getMessage(), 500);
-    // throw $exception;
+    throw $exception;
 }
 
 $response->send();
