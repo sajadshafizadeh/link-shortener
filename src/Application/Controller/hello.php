@@ -5,30 +5,26 @@ namespace Application\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use \Twig\Environment;
-use PDO;
+use Model\Service;
 
 class Hello{
 
 	private $twig;
     protected $connection;
     protected $configuration;
+    private $sayHello;
 
-	public function __construct(Environment $twig, PDO $connection) {
+	public function __construct(Environment $twig, Service\SayHello $sayHello) {
 		$this->twig = $twig;
-        $this->connection = $connection;
+        $this->sayHello = $sayHello;
 	}
 
     public function index(Request $request): Response {
 
+        $names = $this->sayHello->toNames();
+
     	$template = $this->twig->load('hello.html.twig');
-    	$res = $template->render(['name' => $request->get('name')]);
-
-    	$res .= "<br><br>" . "All Names:" . "<br>";
-
-    	$sql = "select * from names";
-		foreach ($this->connection->query($sql) as $row) {
-		    $res .= $row['id'] . " => " . $row['name'] . "<br>";
-		}
+    	$res = $template->render(['name' => $request->get('name'), 'other_names' => $names]);
 
 		return $response = new Response($res);
     }

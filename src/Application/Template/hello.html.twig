@@ -1,1 +1,8 @@
 Hello {{ name|escape }}
+
+<h3>Other Names:</h3>
+<ul>
+    {% for name in other_names %}
+        <li>{{ name|escape }}</li>
+    {% endfor %}
+</ul>

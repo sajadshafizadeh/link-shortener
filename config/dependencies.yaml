@@ -19,6 +19,6 @@ services:
 
     PDO:
         class: PDO
-        arguments: ['mysql:host=localhost;dbname=spy;charset=utf8mb4', 'root', '']
+        arguments: ['mysql:host=localhost;dbname=test;charset=utf8mb4', 'root', '']
         calls:
             - [setAttribute, [!php/const PDO::ATTR_ERRMODE, !php/const PDO::ERRMODE_EXCEPTION]]
