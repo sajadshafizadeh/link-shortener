@@ -21,7 +21,7 @@ class Hello{
 
     public function index(Request $request): Response {
 
-        $names = $this->sayHello->toNames();
+        $names = $this->sayHello->toNames();        
 
     	$template = $this->twig->load('hello.html.twig');
     	$res = $template->render(['name' => $request->get('name'), 'other_names' => $names]);

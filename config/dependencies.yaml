@@ -16,6 +16,12 @@ services:
             
     Application\Controller\:
         resource: '%path.root%/src/Application/Controller/*'
+    
+    Model\Service\:
+        resource: '%path.root%/src/Model/Service/*'
+        
+    Model\Mapper\:
+        resource: '%path.root%/src/Model/Mapper/*'
 
     PDO:
         class: PDO
