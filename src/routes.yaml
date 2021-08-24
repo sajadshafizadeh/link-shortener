@@ -6,6 +6,7 @@ home:
     controller: Application\Controller\Hello
     action: index
     name: World
+    middlewares: [Accessibility]
 
 hello:
   path: /hello/{name}

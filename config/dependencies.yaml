@@ -16,6 +16,9 @@ services:
             
     Application\Controller\:
         resource: '%path.root%/src/Application/Controller/*'
+
+    Application\Middleware\:
+        resource: '%path.root%/src/Application/Middleware/*'
     
     Model\Service\:
         resource: '%path.root%/src/Model/Service/*'

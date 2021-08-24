@@ -34,6 +34,19 @@ try {
     $loader = new YamlFileLoader($containerBuilder, new FileLocator(__DIR__));
     $loader->load(__DIR__.'/../config/dependencies.yaml');
     $containerBuilder->compile();
+
+    // Middleware(s)
+    if (isset($parameters['middlewares']) && is_array($parameters['middlewares'])){
+        foreach ($parameters['middlewares'] as $middleware) {
+            $middleware = $containerBuilder->get("Application\\Middleware\\".$middleware);
+            $middleware->{"handle"}($request);
+        }
+        
+        /* When the interpreter gets here, it means, all middlware(s) passed as well
+         * And there is no exception throwed
+         */
+    }
+
     $controller = $containerBuilder->get($request->get('controller'));
 
     // To call the specified method of the controller class in the route
